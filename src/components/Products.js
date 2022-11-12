@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Products = ({ id, title, image, category, rating, price }) => {
+const Products = ({ title, image, category, rating, price }) => {
 
   return (
   <div className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-white-800 dark:border-gray-700 hover:shadow-2xl duration-500">
@@ -8,7 +8,7 @@ const Products = ({ id, title, image, category, rating, price }) => {
           <img className='p-8 rounded-t-lg h-60 w-50 mx-auto' src={image} alt="product"></img>
       </a>
       <div className="px-5 pb-5">
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{ category }</span>
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{ category }</span>
           <a href="#">
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-black">{title}</h5>
           </a>
