@@ -10,7 +10,7 @@ export function useGetProduct() {
 
   React.useEffect(() => {
     dispatch(fetchProduct());
-  }, []);
+  }, [dispatch]);
   return (
     { product, loading }
   )

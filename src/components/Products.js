@@ -3,7 +3,7 @@ import React from 'react'
 const Products = ({ id, title, image, category, rating, price }) => {
 
   return (
-  <div className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-white-800 dark:border-gray-700">
+  <div className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-white-800 dark:border-gray-700 hover:shadow-2xl duration-500">
       <a href="#" className='bg-white'>
           <img className='p-8 rounded-t-lg h-60 w-50 mx-auto' src={image} alt="product"></img>
       </a>
