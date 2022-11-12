@@ -23,7 +23,7 @@ const Homepage = () => {
   return (
     <div className='container mx-auto p-4'>
         <h1 className=''>Products</h1>
-        <div className="grid grid-cols-4 gap-4 py-4">
+        <div className="grid grid-cols-5 gap-4 py-4">
             {product.map((item) => (
                 <Products id={item.id} title={item.title} image={item.image} category={item.category} description={item.description} price={item.price} />
             ))}
