@@ -5,19 +5,25 @@ import './styles/colors.css';
 import Homepage from './pages/Homepage';
 import Footer from './components/Footer.js';
 import { useState } from 'react';
-import Login from './components/Login';
-import Product from './components/Products';
+import LoginPage from './pages/LoginPage.js';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("userToken") ?? null);
-  const auth = localStorage.getItem("userToken");
 
   return (
     <div>
-      <NavBar />
-      <Homepage />
-      <Footer />
-      {token ? <Product /> : <Login token={token} setToken={setToken} />}
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
