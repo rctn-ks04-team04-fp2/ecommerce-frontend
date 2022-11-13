@@ -3,12 +3,14 @@ import '../style/Login.css';
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { login } from "../features/AuthSlice";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({token, setToken}) => {
+const Login = ({token, setToken, auth, setAuth}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const loginHandler = (e) => {
         e.preventDefault();
@@ -28,10 +30,14 @@ const Login = ({token, setToken}) => {
             console.log(err.response);
             setError(err.response.data);
         })
-        dispatch(login({
-            username:username,
-            password:password
-        }));
+        if (localStorage.getItem("userToken")) {
+            dispatch(login({
+                username:username,
+                password:password
+            }));
+            setAuth(true);
+            navigate("/");
+        }
     }
     return(
         <section>
