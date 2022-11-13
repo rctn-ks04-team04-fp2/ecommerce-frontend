@@ -4,7 +4,6 @@ import './styles/globals.css';
 import './styles/colors.css';
 import Homepage from './pages/Homepage';
 import Footer from './components/Footer.js';
-import { useState } from 'react';
 import LoginPage from './pages/LoginPage.js';
 import {
   BrowserRouter as Router,
