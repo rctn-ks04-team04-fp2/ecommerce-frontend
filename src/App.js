@@ -5,6 +5,7 @@ import './styles/colors.css';
 import Homepage from './pages/Homepage';
 import Footer from './components/Footer.js';
 import LoginPage from './pages/LoginPage.js';
+import RecapSales from './components/RecapSales.js';
 import { useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -22,6 +23,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage auth={auth} setAuth={setAuth} />} />
+
+          <Route path="/" element={<Homepage />} />
+          <Route path="/recapsales" element={<RecapSales />} />
         </Routes>
         <Footer />
       </Router>
