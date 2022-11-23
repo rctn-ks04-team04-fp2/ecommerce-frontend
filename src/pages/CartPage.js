@@ -10,7 +10,6 @@ const CartPage = () => {
   allCart.carts.forEach(element => {
     if (element.username === username) userCart = element.cart; 
   });
-  console.log(userCart);
 
   return (
     <div className="container mx-auto mt-10 h-screen">

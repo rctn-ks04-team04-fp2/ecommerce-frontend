@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const CartItems = ({id, quantity}) => {
   const itemData = useSelector((state) => state.product);
   const item = itemData.product[id - 1];
+  const [totalPrice, setTotalPrice] = useState(quantity * item.price);
 
   const quantityChange = (e) => {
+    setTotalPrice(e.target.value * item.price);
     console.log(e.target.value);
   }
   
@@ -21,10 +23,10 @@ const CartItems = ({id, quantity}) => {
         </div>
         </div>
         <div className="flex justify-center w-1/5">
-        <input className="mx-2 border text-center w-10" type="text" onChange={(e) => {quantityChange(e)}}/>
+        <input className="mx-2 border text-center w-10" type="text" onChange={(e) => {quantityChange(e)}} defaultValue={quantity} />
         </div>
         <span className="text-center w-1/5 font-semibold text-sm">${item.price}</span>
-        <span className="text-center w-1/5 font-semibold text-sm">$400.00</span>
+        <span className="text-center w-1/5 font-semibold text-sm">${totalPrice}</span>
     </div>
   )
 }
