@@ -9,7 +9,12 @@ export function useGetProduct() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(fetchProduct());
+    if (product === []) {
+      dispatch(fetchProduct());
+      console.log(product);
+    }
+    console.log(product[2].stock);
+    
   }, [dispatch]);
   return (
     { product, loading }

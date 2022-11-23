@@ -19,7 +19,6 @@ const CartPage = () => {
         userTotalPrice = element.totalPrice;
     }
   });
-  console.log(userCart);
 
   const handleCheckout = () => {
     console.log("masuk");
