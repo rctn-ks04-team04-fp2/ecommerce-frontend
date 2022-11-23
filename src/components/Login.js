@@ -3,6 +3,7 @@ import '../style/Login.css';
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { login } from "../features/AuthSlice";
+import { addCart } from "../features/CartSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({token, setToken, auth, setAuth}) => {
@@ -22,22 +23,23 @@ const Login = ({token, setToken, auth, setAuth}) => {
                 password: password
             },
         }).then((res) => {
-            console.log(res.data.token);
             setToken(res.data.token);
             localStorage.setItem("userToken", res.data.token);
             setError("");
-        }).catch(err => {
-            console.log(err.response);
-            setError(err.response.data);
-        })
-        if (localStorage.getItem("userToken")) {
             dispatch(login({
                 username:username,
                 password:password
             }));
+            dispatch(addCart({
+                username: username,
+                cart: []
+            }));
             setAuth(true);
             navigate("/");
-        }
+        }).catch(err => {
+            console.log(err.response);
+            setError(err.response.data);
+        })
     }
     return(
         <section>

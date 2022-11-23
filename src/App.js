@@ -5,6 +5,7 @@ import './styles/colors.css';
 import Homepage from './pages/Homepage';
 import Footer from './components/Footer.js';
 import LoginPage from './pages/LoginPage.js';
+import CartPage from './pages/CartPage.js';
 import { useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -13,7 +14,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage auth={auth} setAuth={setAuth} />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
         <Footer />
       </Router>

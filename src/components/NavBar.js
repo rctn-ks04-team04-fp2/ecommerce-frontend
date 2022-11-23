@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/AuthSlice";
 import { useSelector } from 'react-redux';
+import { FaShoppingCart } from "react-icons/fa";
 
 export function NavBar({auth, setAuth}) {
 
     const dispatch = useDispatch();
-    const { username } = useSelector((state) => state.user);
-
+    const { username } = useSelector((state) => state.user.user || "");
 
     const handleLogout = () => {
         localStorage.clear();
@@ -16,10 +16,39 @@ export function NavBar({auth, setAuth}) {
         dispatch(logout);
     }
 
+    let logComponent = null;
+    
+    if (auth) {
+        const userLogoutButton = "Logout (" + username+")";
+        logComponent = (
+            <>
+                <li>
+                    <Link to="/cart" relative="path" className="block pt-3 text-gray-700 text-lg hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"> 
+                        <FaShoppingCart />
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/login" onClick={handleLogout} relative="path" className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"> 
+                        {userLogoutButton}
+                    </Link>
+                </li>
+            </>
+        );
+    }
+    else {
+        logComponent = (
+            <li>
+                <Link to="/login" relative="path" className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"> 
+                    Login
+                </Link>
+            </li>
+        );
+    }
+
     return (
         <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
-                <a href="#" className="flex items-center">
+                <a href="/" className="flex items-center">
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">BukaPedia</span>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
@@ -34,16 +63,7 @@ export function NavBar({auth, setAuth}) {
                         Home
                     </Link>
                     </li>
-                    <li>
-                    {!auth && 
-                    <Link to="/login" relative="path" className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"> 
-                        Login
-                    </Link>}
-                    {auth && 
-                    <Link to="/login" onClick={handleLogout} relative="path" className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"> 
-                        Logout ({username})
-                    </Link>}
-                    </li>
+                    {logComponent}
                 </ul>
                 </div>
             </div>

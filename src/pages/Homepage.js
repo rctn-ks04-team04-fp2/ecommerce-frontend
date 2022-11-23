@@ -25,7 +25,7 @@ const Homepage = () => {
         <h1 className=''>Products</h1>
         <div className="grid grid-cols-5 gap-4 py-4">
             {product.map((item) => (
-                <Products key={item.id} title={item.title} image={item.image} category={item.category} rating={item.rating} price={item.price} />
+                <Products key={item.id} id={item.id} title={item.title} image={item.image} category={item.category} rating={item.rating} price={item.price} />
             ))}
         </div>
     </div>
