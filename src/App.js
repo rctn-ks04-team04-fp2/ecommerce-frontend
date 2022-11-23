@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import Footer from './components/Footer.js';
 import LoginPage from './pages/LoginPage.js';
 import CartPage from './pages/CartPage.js';
+import DetailPage from './pages/DetailPage.js';
 import { useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage auth={auth} setAuth={setAuth} />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/:id/detail" element={<DetailPage />} />
         </Routes>
         <Footer />
       </Router>

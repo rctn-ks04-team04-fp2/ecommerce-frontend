@@ -25,12 +25,12 @@ const Products = ({ title, image, category, rating, price, id }) => {
 
   return (
     <div key={id} className="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-white-800 dark:border-gray-700 hover:shadow-2xl duration-500">
-      <a href="#" className='bg-white'>
+      <a href="#" onClick={() => {navigate("/"+id+"/detail")}} className='bg-white'>
           <img className='p-8 rounded-t-lg h-60 w-50 mx-auto' src={image} alt="product"></img>
       </a>
       <div className="px-5 pb-5">
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{ category }</span>
-          <a href="#">
+          <a href="#" onClick={() => {navigate("/"+id+"/detail")}}>
               <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-black">{title}</h5>
           </a>
           <div className="flex items-center mt-2.5 mb-5">
