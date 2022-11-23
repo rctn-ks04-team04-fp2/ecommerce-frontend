@@ -1,18 +1,34 @@
 import CartItems from '../components/CartItems';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { setProductStock } from '../features/ProductSlice';
+import { useDispatch } from 'react-redux';
 
 const CartPage = () => {
   
   const { username } = useSelector((state) => state.user.user || "");
+  const dispatch = useDispatch();
+  const [isDisabled, setIsDisabled] = useState(false);
   const allCart = useSelector((state) => state.cart);
   let userCart = []
   let userTotalPrice = 0;
+  
   allCart.carts.forEach(element => {
     if (element.username === username) {
         userCart = element.cart;
         userTotalPrice = element.totalPrice;
     }
   });
+
+  const handleCheckout = () => {
+    console.log("masuk");
+    userCart.forEach((item) => {
+        dispatch(setProductStock({
+            id: item.id - 1,
+            newStock: -item.quantity
+        }))
+    })
+  }
 
   return (
     <div className="container mx-auto mt-10 h-screen">
@@ -38,9 +54,9 @@ const CartPage = () => {
         <div className="mt-8">
           <div className="flex font-semibold justify-between py-6 text-sm uppercase">
             <span>Total cost</span>
-            <span>{userTotalPrice}</span>
+            <span>${userTotalPrice}</span>
           </div>
-          <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+          <button onClick={handleCheckout} className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" disabled={isDisabled}>Checkout</button>
         </div>
       </div>
 

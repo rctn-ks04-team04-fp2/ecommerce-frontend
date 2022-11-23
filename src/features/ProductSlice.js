@@ -22,12 +22,12 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     setProductStock: (state, action) => {
-      const data = action.payload.product;
+      const {id, newStock} = action.payload;
       const index = state.product.findIndex(
-        (item) => data.id === item.id
+        (item) => id === item.id
       );
       if (index > -1) {
-        state.product[index].stock += action.payload.amount;
+        state.product[index].stock += newStock;
       }
     }
   },
@@ -48,4 +48,5 @@ const productSlice = createSlice({
   }
 })
 
+export const { setProductStock } = productSlice.actions;
 export default productSlice.reducer;
