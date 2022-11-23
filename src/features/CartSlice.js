@@ -21,20 +21,21 @@ const cartSlice = createSlice({
             }
         },
         addQuantity: (state, action) => {
-            const {username, id, quantity} = action.payload;
+            const {username, id, quantity, totalPrice} = action.payload;
 
             state.carts.forEach((item) => {
                 if (item.username === username) {
                     item.cart.forEach((prod) => {
                         if (prod.id === id) {
-                            prod.quantity += quantity;
+                            prod.quantity = quantity;
                         }
                     });
+                    item.totalPrice += totalPrice
                 }
             });
         },
         addItemToCart: (state, action) => {
-            const {username, id} = action.payload;
+            const {username, id, totalPrice} = action.payload;
 
             const newItem = {
                 id: id,
@@ -44,6 +45,7 @@ const cartSlice = createSlice({
             state.carts.forEach((item) => {
                 if (item.username === username) {
                     item.cart.push(newItem);
+                    item.totalPrice += totalPrice;
                 }
             });
         }

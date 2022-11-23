@@ -32,7 +32,8 @@ const Login = ({token, setToken, auth, setAuth}) => {
             }));
             dispatch(addCart({
                 username: username,
-                cart: []
+                cart: [],
+                totalPrice: 0
             }));
             setAuth(true);
             navigate("/");
