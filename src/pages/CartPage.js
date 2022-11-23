@@ -1,4 +1,3 @@
-import React from 'react';
 import CartItems from '../components/CartItems';
 import { useSelector } from 'react-redux';
 
@@ -7,8 +6,12 @@ const CartPage = () => {
   const { username } = useSelector((state) => state.user.user || "");
   const allCart = useSelector((state) => state.cart);
   let userCart = []
+  let userTotalPrice = 0;
   allCart.carts.forEach(element => {
-    if (element.username === username) userCart = element.cart; 
+    if (element.username === username) {
+        userCart = element.cart;
+        userTotalPrice = element.totalPrice;
+    }
   });
 
   return (
@@ -35,7 +38,7 @@ const CartPage = () => {
         <div className="mt-8">
           <div className="flex font-semibold justify-between py-6 text-sm uppercase">
             <span>Total cost</span>
-            <span>$600</span>
+            <span>{userTotalPrice}</span>
           </div>
           <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
         </div>

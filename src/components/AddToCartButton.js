@@ -2,15 +2,19 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../features/CartSlice';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const AddToCartButton = ({username, id}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const itemData = useSelector((state) => state.product);
+    const item = itemData.product[id - 1];
     const handleCart = () => {
         if (localStorage.getItem("userToken") != null) {
             dispatch(addItemToCart({
             username: username,
-            id: id
+            id: id,
+            totalPrice: item.price
             }));
             navigate("/cart")
         } else {
